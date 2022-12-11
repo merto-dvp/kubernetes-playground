@@ -22,7 +22,7 @@ jobs:
     - name: Build and push certcheck docker image
       run: |
         aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin 193404144226.dkr.ecr.eu-west-1.amazonaws.com
-        docker build -t certchecker:latest .
+        docker build -t certchecker:latest certcheck/
         docker tag certchecker:latest 193404144226.dkr.ecr.eu-west-1.amazonaws.com/certchecker:latest
         docker push 193404144226.dkr.ecr.eu-west-1.amazonaws.com/certchecker:latest
 
