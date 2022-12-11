@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: certcheck-deployment
+  namespace: certcheck
+  labels:
+    app: certcheck
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: certcheck
+  template:
+    metadata:
+      labels:
+        app: certcheck
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: kubernetes.io/arch
+                operator: In
+                values:
+                - amd64
+                - arm64
+      containers:
+      - name: certcheck
+        image: 193404144226.dkr.ecr.eu-west-1.amazonaws.com/certchecker
+        ports:
+        - name: http
+          containerPort: 80
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - name: certs
+          mountPath: /etc/kubernetes/pki
+      volumes:
+      - name: certs
+        hostPath:
+          path: /etc/kubernetes/pki
+      nodeSelector:
+        kubernetes.io/os: linux
