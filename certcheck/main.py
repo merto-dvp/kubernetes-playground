@@ -25,8 +25,9 @@ def main():
 @app.route('/test')
 def test():
     return "Test, this is working!"
+    
 @app.route('/testtest')
-def test():
+def testtest():
     return "Test,12345!"
 
 if __name__ == '__main__':
