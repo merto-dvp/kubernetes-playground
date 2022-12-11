@@ -22,5 +22,9 @@ def main():
     certchecker_output=certChecker(cert_files)
     return certchecker_output
 
+@app.route('/test')
+def test():
+    return "Test, this is working!"
+
 if __name__ == '__main__':
    app.run(host='0.0.0.0', port=80)
