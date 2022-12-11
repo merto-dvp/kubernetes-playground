@@ -24,11 +24,7 @@ def main():
 
 @app.route('/test')
 def test():
-    return "Test, this is working!"
-    
-@app.route('/testtest')
-def testtest():
-    return "Test,12345!"
+    return "Test 123"
 
 if __name__ == '__main__':
    app.run(host='0.0.0.0', port=80)
