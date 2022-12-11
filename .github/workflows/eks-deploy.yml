@@ -36,3 +36,4 @@ jobs:
       run: |
         aws eks --region eu-west-1 update-kubeconfig --name k8s-cluster-5
         kubectl apply -f certcheck/deployment.yaml
+        kubectl apply -f certcheck/service.yaml
